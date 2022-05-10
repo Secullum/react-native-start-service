@@ -35,5 +35,10 @@
 ```javascript
 import RNStartService from 'react-native-start-service';
 
-RNStartService;
+const result = await RNStartService.start(
+  'my.app',
+  'my.app.MyService',
+  'my.app.MY_ACTION',
+  { myParam: 'myValue' }
+);
 ```
