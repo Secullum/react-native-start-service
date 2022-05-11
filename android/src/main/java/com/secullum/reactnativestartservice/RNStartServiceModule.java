@@ -34,7 +34,7 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void start(String packageName, String className, String action, ReadableMap params, Promise promise) {
+  public void startAsync(String packageName, String className, String action, ReadableMap params, Promise promise) {
     try {
       Intent intent = new Intent();
 
