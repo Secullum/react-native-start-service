@@ -35,10 +35,12 @@
 ```javascript
 import RNStartService from 'react-native-start-service';
 
-const result = await RNStartService.start(
+const result = await RNStartService.startAsync(
   'my.app',
   'my.app.MyService',
   'my.app.MY_ACTION',
   { myParam: 'myValue' }
 );
+
+const isInstalled = await RNStartService.isPackageInstalledAsync('my.app');
 ```
