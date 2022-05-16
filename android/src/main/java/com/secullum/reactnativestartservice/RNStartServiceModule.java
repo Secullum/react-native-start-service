@@ -69,6 +69,10 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
   }
 
   private void setParams(Intent intent, ReadableMap params) {
+    if (params == null) {
+      return;
+    }
+    
     Bundle bundle = new Bundle();
     ReadableMapKeySetIterator iterator = params.keySetIterator();
 
