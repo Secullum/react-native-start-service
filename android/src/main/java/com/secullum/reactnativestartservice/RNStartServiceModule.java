@@ -18,6 +18,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 
 import java.util.Set;
@@ -72,7 +73,7 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
     if (params == null) {
       return;
     }
-    
+
     Bundle bundle = new Bundle();
     ReadableMapKeySetIterator iterator = params.keySetIterator();
 
@@ -112,6 +113,38 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
             result.putDouble(key, (Double)value);
           } else if (value instanceof Boolean) {
             result.putBoolean(key, (Boolean)value);
+          } else if (value instanceof String[]) {
+            WritableArray array = Arguments.createArray();
+
+            for (String item : (String[])value) {
+              array.pushString(item);
+            }
+
+            result.putArray(key, array);
+          } else if (value instanceof int[]) {
+            WritableArray array = Arguments.createArray();
+
+            for (int item : (int[])value) {
+              array.pushInt(item);
+            }
+
+            result.putArray(key, array);
+          } else if (value instanceof double[]) {
+            WritableArray array = Arguments.createArray();
+
+            for (double item : (double[])value) {
+              array.pushDouble(item);
+            }
+
+            result.putArray(key, array);
+          } else if (value instanceof boolean[]) {
+            WritableArray array = Arguments.createArray();
+
+            for (boolean item : (boolean[])value) {
+              array.pushBoolean(item);
+            }
+
+            result.putArray(key, array);
           }
         }
 
