@@ -4,5 +4,5 @@ export function startAsync<TResult>(
   packageName: string,
   className: string,
   action: string,
-  params: object
+  params: object | null
 ): Promise<TResult>;
