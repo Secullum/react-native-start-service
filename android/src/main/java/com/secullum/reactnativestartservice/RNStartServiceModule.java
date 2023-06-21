@@ -1,5 +1,6 @@
 package com.secullum.reactnativestartservice;
 
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -42,6 +43,24 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
       ApplicationInfo applicationInfo = reactContext.getPackageManager().getApplicationInfo(packageName, 0);
       promise.resolve(applicationInfo.enabled);
     } catch (PackageManager.NameNotFoundException e) {
+      promise.resolve(false);
+    } catch (Exception e) {
+      promise.reject(e);
+    }
+  }
+
+  @ReactMethod
+  public void isRunningServiceAsync(String serviceName, Promise promise) {
+    ActivityManager manager = (ActivityManager) reactContext.getSystemService(reactContext.ACTIVITY_SERVICE);
+
+    try {
+      for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+        if (serviceName.equals(service.service.getClassName())) {
+          promise.resolve(true);
+          return;
+        }
+      }
+
       promise.resolve(false);
     } catch (Exception e) {
       promise.reject(e);
