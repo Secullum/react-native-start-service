@@ -43,4 +43,6 @@ const result = await RNStartService.startAsync(
 );
 
 const isInstalled = await RNStartService.isPackageInstalledAsync('my.app');
+
+const isRunning = await RNStartService.isRunningServiceAsync('my.service');
 ```
