@@ -51,9 +51,9 @@ public class RNStartServiceModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void isRunningServiceAsync(String serviceName, Promise promise) {
-    ActivityManager manager = (ActivityManager) reactContext.getSystemService(reactContext.ACTIVITY_SERVICE);
-
     try {
+      ActivityManager manager = (ActivityManager) reactContext.getSystemService(reactContext.ACTIVITY_SERVICE);
+
       for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
         if (serviceName.equals(service.service.getClassName())) {
           promise.resolve(true);
